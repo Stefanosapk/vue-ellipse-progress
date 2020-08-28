@@ -20,6 +20,7 @@
     "README"
   ],
   "devDependencies": {
+    "@vue/cli": "^4.5.4",
     "@vue/cli-plugin-babel": "^4.5.4",
     "@vue/cli-plugin-eslint": "^4.5.4",
     "@vue/cli-plugin-unit-mocha": "^4.5.4",
@@ -32,11 +33,10 @@
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "eslint-plugin-vue": "^7.0.0-beta.3",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
     "sass-loader": "^9.0.3",
-    "@vue/cli": "^4.5.4",
     "vue": "^3.0.0-beta.1",
     "vue-cli-plugin-vue-next": "~0.1.3"
   },

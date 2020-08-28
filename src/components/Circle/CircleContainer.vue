@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import Gradient from "../Gradient.vue";
 import HalfCircleProgress from "./HalfCircle.vue";
 import CircleProgress from "./Circle.vue";
@@ -45,22 +46,14 @@ export default {
       required: false,
     },
   },
-  computed: {
-    circleType() {
-      return this.half ? "half-circle-progress" : "circle-progress";
-    },
-    isColorGradient() {
-      return Array.isArray(this.color.colors);
-    },
-    isColorFillGradient() {
-      return Array.isArray(this.colorFill.colors);
-    },
-    isEmptyColorGradient() {
-      return Array.isArray(this.emptyColor.colors);
-    },
-    isEmptyColorFillGradient() {
-      return Array.isArray(this.emptyColorFill.colors);
-    },
+  setup(props) {
+    return {
+      circleType: computed(() => (props.half ? "half-circle-progress" : "circle-progress")),
+      isColorGradient: computed(() => Array.isArray(props.color.colors)),
+      isColorFillGradient: computed(() => Array.isArray(props.colorFill.colors)),
+      isEmptyColorGradient: computed(() => Array.isArray(props.emptyColor.colors)),
+      isEmptyColorFillGradient: computed(() => Array.isArray(props.emptyColorFill.colors)),
+    };
   },
 };
 </script>

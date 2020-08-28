@@ -67,6 +67,7 @@ export default {
   name: "CircleProgress",
   components: { FadeInTransition },
   mixins: [CircleMixin],
+
   computed: {
     position() {
       return this.size / 2;

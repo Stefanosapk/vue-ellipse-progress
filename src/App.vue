@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <div class="ep-test-card" :style="{ maxHeight: size.height + 2000 + 'px' }">
       <div>
         <label for="progress">
@@ -19,6 +19,10 @@
         <label for="nodata">
           No DATA
           <input id="nodata" type="checkbox" v-model="noData" />
+        </label>
+        <label for="half">
+          Half
+          <input id="half" type="checkbox" v-model="half" />
         </label>
         <label for="animation">
           Animation
@@ -40,31 +44,9 @@
         <input type="checkbox" v-model="circles[2].loading" />
         <input type="checkbox" v-model="circles[3].loading" />
       </div>-->
-      <div style="border: 1px solid red; display: inline-block;">
-        <vue-ellipse-progress :progress="progress" reverse :data="circles" :gap="10">
-          <template v-slot:legend-value>
-            <span>/200</span>
-          </template>
-          <template v-slot:legend-caption>
-            <span>Some Caption</span>
-          </template>
-        </vue-ellipse-progress>
-      </div>
-      <vue-ellipse-progress
-        :loading="loading"
-        :no-data="noData"
-        :progress="progress"
-        :angle="-90"
-        :legend="false"
-        :thickness="100"
-        dash="strict 60 0.95"
-        :empty-thickness="100"
-        line="butt"
-        half
-        animation="rs 1000"
-        :dot="{ size: 100, backgroundColor: 'rgba(100,256,4,1)', width: '2px' }"
-        line-mode="in-over"
-      />
+      <vue-ellipse-progress :progress="progress" :half="half" :colorFill="emptyColorFill">
+
+      </vue-ellipse-progress>
     </div>
   </div>
 </template>
@@ -84,6 +66,7 @@ export default {
     determinate: false,
     loading: false,
     noData: false,
+    half: false,
     progress: 50,
     timerProgress: 0,
     sec: 0,
@@ -172,21 +155,19 @@ export default {
 
 <style lang="scss">
 body {
+  height: 100%;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 #app {
   padding: 20px;
-  display: flex;
-  align-items: center;
-  min-height: 100vh;
+  height: 100%;
   font-family: "Arial", serif;
   color: white;
   background-color: #0b1656;
 }
 .ep-test-card {
-  width: 100%;
   padding: 12px;
   border-radius: 10px;
   background-color: #273266;
