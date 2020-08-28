@@ -46,15 +46,13 @@ export default {
       required: false,
     },
   },
-  setup(props) {
-    return {
-      circleType: computed(() => (props.half ? "half-circle-progress" : "circle-progress")),
-      isColorGradient: computed(() => Array.isArray(props.color.colors)),
-      isColorFillGradient: computed(() => Array.isArray(props.colorFill.colors)),
-      isEmptyColorGradient: computed(() => Array.isArray(props.emptyColor.colors)),
-      isEmptyColorFillGradient: computed(() => Array.isArray(props.emptyColorFill.colors)),
-    };
-  },
+  setup: (props) => ({
+    circleType: computed(() => (props.half ? "half-circle-progress" : "circle-progress")),
+    isColorGradient: computed(() => Array.isArray(props.color.colors)),
+    isColorFillGradient: computed(() => Array.isArray(props.colorFill.colors)),
+    isEmptyColorGradient: computed(() => Array.isArray(props.emptyColor.colors)),
+    isEmptyColorFillGradient: computed(() => Array.isArray(props.emptyColorFill.colors)),
+  }),
 };
 </script>
 <style lang="scss">

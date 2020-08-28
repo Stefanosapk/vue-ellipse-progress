@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import { getNumberIfValid, isValidNumber } from "../utils";
 import { props } from "./interface";
 import CircleContainer from "./Circle/CircleContainer.vue";
@@ -46,32 +47,26 @@ export default {
   name: "VueEllipseProgress",
   components: { Counter, CircleContainer },
   props,
-  computed: {
-    legendVal() {
-      if (this.loading || this.noData) {
-        return 0;
-      }
-      return this.legendValue ? this.legendValue : getNumberIfValid(this.progress) || 0;
-    },
-    shouldHideLegendValue() {
-      return !this.isDataAvailable || this.loading;
-    },
-    isDataAvailable() {
-      return isValidNumber(this.progress) && !this.noData;
-    },
-    isMultiple() {
-      return this.data.length > 1;
-    },
-    circlesData() {
-      if (this.isMultiple) {
-        return this.data.map((data) => ({
-          ...this.$props,
-          ...data,
-          emptyThickness: isValidNumber(data.thickness) ? data.thickness : this.$props.thickness,
-        }));
-      }
-      return [this.$props];
-    },
+  setup: (p) => {
+    const isDataAvailable = computed(() => isValidNumber(p.progress) && !p.noData);
+    const shouldHideLegendValue = computed(() => !isDataAvailable.value || p.loading);
+    const computedProgress = computed(() => getNumberIfValid(p.progress) || 0);
+    const isMultiple = computed(() => p.data.length > 1);
+    const legendVal = computed(() => (!shouldHideLegendValue.value ? p.legendValue || computedProgress.value : 0));
+    return {
+      legendVal,
+      isMultiple,
+      shouldHideLegendValue,
+      circlesData: computed(() =>
+        isMultiple.value
+          ? p.data.map((data) => ({
+              ...p,
+              ...data,
+              emptyThickness: isValidNumber(data.thickness) ? data.thickness : p.thickness,
+            }))
+          : [p]
+      ),
+    };
   },
 };
 </script>
