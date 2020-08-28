@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   plugins: ["prettier"],
-  extends: ["plugin:vue/essential", "@vue/airbnb", "plugin:prettier/recommended"],
+  extends: ["plugin:vue/vue3-essential", "@vue/airbnb", "plugin:prettier/recommended"],
   rules: {
     "prettier/prettier": "warn",
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",

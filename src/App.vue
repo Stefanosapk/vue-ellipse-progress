@@ -42,8 +42,12 @@
       </div>-->
       <div style="border: 1px solid red; display: inline-block;">
         <vue-ellipse-progress :progress="progress" reverse :data="circles" :gap="10">
-          <span slot="legend-value">/200</span>
-          <span slot="legend-caption">Some Caption</span>
+          <template v-slot:legend-value>
+            <span>/200</span>
+          </template>
+          <template v-slot:legend-caption>
+            <span>Some Caption</span>
+          </template>
         </vue-ellipse-progress>
       </div>
       <vue-ellipse-progress
