@@ -46,7 +46,7 @@ export default {
       return this.duration === 0 ? this.difference : this.difference / this.duration;
     },
     delimiter() {
-      return this.value.toString().search(",") >= 0 ? "," : ".";
+      return this.value.toString().includes(",") ? "," : ".";
     },
     formattedValue() {
       return this.currentValue.toFixed(this.countDecimals()).replace(".", this.delimiter);
